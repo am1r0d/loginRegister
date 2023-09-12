@@ -103,7 +103,7 @@ const Signup = () => {
                                 ? styles.uncompleted
                                 : styles.formInput
                         }
-                        type="text"
+                        type="password"
                         name="password"
                         value={data.password}
                         onChange={changeHandler}
@@ -121,7 +121,7 @@ const Signup = () => {
                                 ? styles.uncompleted
                                 : styles.formInput
                         }
-                        type="text"
+                        type="password"
                         name="confirmPassword"
                         value={data.confirmPassword}
                         onChange={changeHandler}
