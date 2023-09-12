@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { validate } from "./validate";
+
 const Signup = () => {
     const [data, setData] = useState({
         name: "",
@@ -7,12 +9,17 @@ const Signup = () => {
         confirmPassword: "",
         isAccepted: false,
     });
-    
+    const [errors, setErrors] = useState({});
+    useEffect(() => {
+        setErrors(validate(data));
+        console.log(errors);
+    }, [data]);
+
     const changeHandler = (e) => {
         if (e.target.name === "isAccepted") {
-            setData({ ...data, [e.target.name]: e.target.checked ? });
-        }else{
-            setData({ ...data, [e.target.name]: e.target.value})
+            setData({ ...data, [e.target.name]: e.target.checked });
+        } else {
+            setData({ ...data, [e.target.name]: e.target.value });
         }
         console.log(data);
     };
@@ -23,15 +30,30 @@ const Signup = () => {
                 <h2>SignUp</h2>
                 <div>
                     <label>Name</label>
-                    <input type="text" name="name" value={data.name} />
+                    <input
+                        type="text"
+                        name="name"
+                        value={data.name}
+                        onChange={changeHandler}
+                    />
                 </div>
                 <div>
                     <label>Email</label>
-                    <input type="text" name="email" value={data.email} />
+                    <input
+                        type="text"
+                        name="email"
+                        value={data.email}
+                        onChange={changeHandler}
+                    />
                 </div>
                 <div>
                     <label>Password</label>
-                    <input type="text" name="password" value={data.password} />
+                    <input
+                        type="text"
+                        name="password"
+                        value={data.password}
+                        onChange={changeHandler}
+                    />
                 </div>
                 <div>
                     <label>Confirm Password</label>
@@ -39,6 +61,7 @@ const Signup = () => {
                         type="text"
                         name="confirmPassword"
                         value={data.confirmPassword}
+                        onChange={changeHandler}
                     />
                 </div>
                 <div>
@@ -47,6 +70,7 @@ const Signup = () => {
                         type="text"
                         name="isAccepted"
                         value={data.isAccepted}
+                        onChange={changeHandler}
                     />
                 </div>
                 <a href="#">Login</a>
