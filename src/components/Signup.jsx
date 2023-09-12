@@ -1,5 +1,22 @@
 import React, { useState } from "react";
 const Signup = () => {
+    const [data, setData] = useState({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        isAccepted: false,
+    });
+    
+    const changeHandler = (e) => {
+        if (e.target.name === "isAccepted") {
+            setData({ ...data, [e.target.name]: e.target.checked ? });
+        }else{
+            setData({ ...data, [e.target.name]: e.target.value})
+        }
+        console.log(data);
+    };
+
     return (
         <div>
             <form>
