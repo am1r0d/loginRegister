@@ -25,6 +25,10 @@ const Login = () => {
         console.log(errors);
     }, [data, touched]);
 
+    const changeHandler = (event) => {
+        setData({ ...data, [event.target.name]: event.target.value });
+    };
+
     // FOCUS-HANDLER
     const focusHandler = (event) => {
         setTouched({ ...touched, [event.target.name]: true });

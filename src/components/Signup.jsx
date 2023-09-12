@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 import { validate } from "./validate";
 import { notify } from "./Toast";
@@ -58,11 +59,16 @@ const Signup = () => {
 
     return (
         <div className={styles.container}>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={submitHandler} className={styles.formContainer}>
                 <h2 className={styles.header}>SignUp</h2>
                 <div className={styles.formField}>
                     <label>Name</label>
                     <input
+                        className={
+                            errors.name && touched.name
+                                ? styles.uncompleted
+                                : styles.formInput
+                        }
                         type="text"
                         name="name"
                         value={data.name}
@@ -130,7 +136,7 @@ const Signup = () => {
                     <div className={styles.checkBoxContainer}>
                         <label>I Accept terms pf privacy of policy</label>
                         <input
-                            type="text"
+                            type="checkbox"
                             name="isAccepted"
                             value={data.isAccepted}
                             onChange={changeHandler}
@@ -142,7 +148,7 @@ const Signup = () => {
                     )}
                 </div>
                 <div className={styles.formButtons}>
-                    <a href="#">Login</a>
+                    <Link to="/login">Login</Link>
                     <button type="submit">Sign Up</button>
                 </div>
             </form>
